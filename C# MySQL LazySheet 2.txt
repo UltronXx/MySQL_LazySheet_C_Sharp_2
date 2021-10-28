@@ -1,0 +1,165 @@
+MY LAZY SHEET
+
+==========================================================================================
+
+FOR DATA GRID VIEW FORM
+
+------------------------------------------------------------------------------------------
+
+DATA GRID VIEW - CELL CLICK (Attached UPDATE and DELETE buttons)
+
+		// FOR DELETING FROM DATABASE
+if (/* dataGridViewName */.Columns[e.ColumnIndex].HeaderText == "/* dataGridViewHeaderName */")
+            {
+                int columnHeader;
+                columnHeader = Convert.ToInt32(/* dataGridViewName */.Rows[e.RowIndex].Cells["/* columnDesignName */"].Value);
+
+                try
+                {
+                    string sqlServer = "datasource = localhost; port = 3306; username = root; password = /* dataBasePassword */";
+
+                    string sqlQuery = "DELETE FROM /* dataBaseName.tableName */ WHERE /* dataBaseTableName1 */ = @/* identifier */";
+
+                    MySqlConnection sqlConn = new MySqlConnection(sqlServer);
+                    MySqlCommand sqlCmd = new MySqlCommand(sqlQuery, sqlConn);
+                    
+                    sqlConn.Open();
+                    sqlCmd.Parameters.AddWithValue("@/* identifier */", columnHeader);
+
+                    int result = sqlCmd.ExecuteNonQuery();
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Message");
+                        /* DATABASE */DB();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Message");
+                    }
+
+                    sqlConn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
+
+		// FOR UPDATING DATABASE
+            if (/* dataGridViewName */.Columns[e.ColumnIndex].HeaderText == "/* dataGridViewHeaderName */")
+            {
+		// Declaring Objects
+
+                int /* objectName1 */;
+                string /* objectName2 */;
+                string /* objectName3 */;
+                string /* objectName4 */;
+
+			// Convert INTEGER object to Int32
+                /* objectName1 */ = Convert.ToInt32(/* dataGridViewName */.Rows[e.RowIndex].Cells["/* columnDesignName1 */"].Value);
+                /* objectName2 */ = Convert.ToString(/* dataGridViewName */.Rows[e.RowIndex].Cells["/* columnDesignName2 */"].Value);
+                /* objectName3 */ = Convert.ToString(/* dataGridViewName */.Rows[e.RowIndex].Cells["/* columnDesignName3 */"].Value);
+                /* objectName4 */ = Convert.ToString(/* dataGridViewName */.Rows[e.RowIndex].Cells["/* columnDesignName4 */"].Value);
+
+                Form2 /* formName */ = new Form2(/* objectName1 */, /* objectName2 */, /* objectName3 */, /* objectName4 */);
+                /* formName */.ShowDialog();
+
+                /* DATABASE */DB();
+            }
+
+------------------------------------------------------------------------------------------
+
+
+
+DATA GRID VIEW (SECOND FORM)
+
+------------------------------------------------------------------------------------------
+DECLARING VARIABLES (CONNECTING FORM2 FUNCTION VARIABLES)
+
+	int /* OBJECT1 */;
+        string /* OBJECT2 */;
+        string /* OBJECT3 */;
+        string /* OBJECT4 */;
+
+public Form2(int /* objectName1 */, string /* objectName2 */, string /* objectName3 */, string /* objectName4 */)
+
+	/* OBJECT1 */ = /* objectName1 */;
+        /* OBJECT2 */ = /* objectName2 */;
+        /* OBJECT3 */ = /* objectName3 */;
+        /* OBJECT4 */ = /* objectName4 */;
+
+------------------------------------------------------------------------------------------
+
+FORM2 LOAD
+
+		// Convert INTEGER text box to String
+	/* textBoxName1 */.Text = /* OBJECT1 */.ToString();
+        /* textBoxName2 */.Text = /* OBJECT2 */;
+        /* textBoxName3 */.Text = /* OBJECT3 */;
+        /* textBoxName4 */.Text = /* OBJECT4 */;
+
+------------------------------------------------------------------------------------------
+
+UPDATING DATABASE
+
+		// Convert INTEGER text box to Int32
+	    /* OBJECT1 */ = Convert.ToInt32(/* textBoxName1 */.Text);
+            /* OBJECT2 */ = /* textBoxName2 */.Text;
+            /* OBJECT3 */ = /* textBoxName3 */.Text;
+            /* OBJECT4 */ = /* textBoxName4 */.Text;
+
+            try
+            {
+                string sqlServer = "datasource = localhost; port = 3306; username = root; password = /* dataBasePassword */";
+
+                string sqlQuery = "UPDATE /* dataBaseName.tableName */ SET /* dataBaseTableName1 */ = @/* identifier1 */," +
+                                                            "/* dataBaseTableName2 */ = @/* identifier2 */," +
+                                                            "/* dataBaseTableName3 */ = @/* identifier3 */," +
+                                                            "/* dataBaseTableName4 */ = @/* identifier4 */ WHERE /* dataBaseTableName1 */ = @/* identifier1 */";
+
+                MySqlConnection sqlConn = new MySqlConnection(sqlServer);
+                MySqlCommand sqlCmd = new MySqlCommand(sqlQuery, sqlConn);
+
+                sqlConn.Open();
+                sqlCmd.Parameters.AddWithValue("@/* identifier1 */", /* OBJECT1 */);
+                sqlCmd.Parameters.AddWithValue("@/* identifier2 */", /* OBJECT2 */);
+                sqlCmd.Parameters.AddWithValue("@/* identifier3 */", /* OBJECT3 */);
+                sqlCmd.Parameters.AddWithValue("@/* identifier4 */", /* OBJECT4 */);
+
+                int result = sqlCmd.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    MessageBox.Show("Message");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Message");
+                }
+
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
